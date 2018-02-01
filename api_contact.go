@@ -15,6 +15,8 @@ type User struct {
     Order int
     IsAdmin bool
     IsBoss bool
+    DingId string `json:"dingId"`
+    Unionid string `json:"unionid"`
     IsLeader bool
 	IsSys bool `json:"is_sys"`
 	SysLevel int `json:"sys_level"`
