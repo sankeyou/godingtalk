@@ -55,9 +55,16 @@ type DepartmentList struct {
 }
 
 // DepartmentList is 获取部门列表
-func (c *DingTalkClient) DepartmentList() (DepartmentList, error) {
+func (c *DingTalkClient) DepartmentList(parentId string) (DepartmentList, error) {
     var data DepartmentList
-    err := c.httpRPC("department/list", nil, nil, &data)   
+    params := url.Values{}
+    params.Add("lang", "zh_CN")
+    params.Add("fetch_child", "true")
+    if parentId == ""{
+        parentId = "1"
+    }
+    params.Add("id", parentId)
+    err := c.httpRPC("department/list", params, nil, &data)
     return data, err
 }
 
