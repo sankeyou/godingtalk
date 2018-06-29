@@ -27,9 +27,9 @@ type DingTalkClient struct {
 	Cache       Cache
 
 	//社交相关的属性
-	SnsAppID string
-	SnsAppSecret string
-	SnsAccessToken string	
+	SnsAppID       string
+	SnsAppSecret   string
+	SnsAccessToken string
 }
 
 //Unmarshallable is
@@ -99,7 +99,8 @@ func NewDingTalkClient(corpID string, corpSecret string) *DingTalkClient {
 	c.HTTPClient = &http.Client{
 		Timeout: 10 * time.Second,
 	}
-	c.Cache = NewFileCache(".auth_file")
+	// c.Cache = NewFileCache(".auth_file")
+	c.Cache = NewInMemoryCache()
 	return c
 }
 
